@@ -13,7 +13,8 @@
         <string name="register">Register a new User</string>
         <string name="loged_msg">You are logged in successefuly!</string>
         <string name="title_activity_register_user">RegisterUserActivity</string>
+    <string name="emptyString" />
 
 
-    </resources>
+</resources>
 

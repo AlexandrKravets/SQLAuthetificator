@@ -50,17 +50,17 @@ tools:context="com.example.kravets.sqlauthentificator.MainActivity">
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/tFieldUName"
+        android:id="@+id/TFUserName"
         android:layout_width="fill_parent"
         android:layout_height="42dp"
         android:inputType="textEmailAddress"
         android:hint="@string/info_email"
         android:textSize="@dimen/abc_action_bar_icon_vertical_padding_material">
-        <requestFocus />
+
     </EditText>
 
     <EditText
-        android:id="@+id/tFieldUPwd"
+        android:id="@+id/TFPassword"
         android:layout_width="fill_parent"
         android:layout_height="42dp"
         android:inputType="textPassword"
@@ -80,7 +80,8 @@ tools:context="com.example.kravets.sqlauthentificator.MainActivity">
     android:text="@string/login"
     android:layout_marginStart="54dp"
     android:layout_below="@+id/tFieldsLayout"
-    android:layout_alignParentStart="true" />
+    android:layout_alignParentStart="true"
+    android:onClick="onButtonClick" />
 
     <Button
         android:id="@+id/regBtn"

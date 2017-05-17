@@ -16,14 +16,14 @@ public class RegisterUserActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_user);
 
-		Button registerBtn = (Button)findViewById(R.id.registerBtn);
+		Button registerBtn = (Button)findViewById(R.id.bRegister);
 		registerBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				EditText tUNAME = (EditText)findViewById(R.id.tFieldUNameR);
-				EditText tUPWD 	= (EditText)findViewById(R.id.tFieldUPwdR);
+				EditText tUNAME = (EditText)findViewById(R.id.TFUserName);
+				EditText tUPWD 	= (EditText)findViewById(R.id.TFPassword);
 				
 				String username = tUNAME.getText().toString();
 				String password = tUPWD.getText().toString();
