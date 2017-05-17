@@ -90,7 +90,8 @@ tools:context="com.example.kravets.sqlauthentificator.MainActivity">
         android:layout_marginRight="16dp"
         android:text="@string/regUser"
         android:layout_below="@+id/tFieldsLayout"
-        android:layout_alignEnd="@+id/tFieldsLayout" />
+        android:layout_alignEnd="@+id/tFieldsLayout"
+        android:onClick="onButtonClick" />
 
 
 

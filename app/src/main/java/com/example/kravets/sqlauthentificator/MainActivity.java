@@ -24,5 +24,12 @@ public class MainActivity extends AppCompatActivity {
          i.putExtra("Username",strName);
          startActivity(i);
      }
+
+     if (v.getId()==R.id.bRegister)
+     {
+         Intent i = new Intent(MainActivity.this, RegisterUserActivity.class);
+
+         startActivity(i);
+     }
    }
 }

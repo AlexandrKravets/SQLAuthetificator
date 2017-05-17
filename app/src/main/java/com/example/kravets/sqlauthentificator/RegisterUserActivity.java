@@ -15,8 +15,27 @@ public class RegisterUserActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_user);
+	}
 
-		Button registerBtn = (Button)findViewById(R.id.bRegister);
+	public void onSignUpClick(View v){
+		if (v.getId()==R.id.bSignup)
+		{
+			EditText mail = (EditText) findViewById(R.id.regName);
+			EditText pass1 = (EditText) findViewById(R.id.regPassword);
+			EditText pass2 = (EditText) findViewById(R.id.regConPassword);
+			String username = mail.getText().toString();
+			String password = pass1.getText().toString();
+			String passwordConfirm = pass2.getText().toString();
+
+			if(!password.equals(passwordConfirm))
+			{
+				// popup message
+				Toast pass = Toast.makeText(RegisterUserActivity.this, "Passwords don't match", Toast.LENGTH_SHORT);
+				pass.show();
+			}
+		}
+	}
+		/*Button registerBtn = (Button)findViewById(R.id.bRegister);
 		registerBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -35,8 +54,8 @@ public class RegisterUserActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				boolean isRegistered = false;
+
+				boolean isRegistered = false; */
 			/*	try {
 				//	isRegistered = new UserManager().execute(username, encryptedPassword).get();
 				} catch (InterruptedException e) {
@@ -46,7 +65,7 @@ public class RegisterUserActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				*/
+
 				if(isRegistered){
 					Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULY", Toast.LENGTH_LONG).show();
 				
@@ -55,8 +74,8 @@ public class RegisterUserActivity extends Activity {
 				}
 			}
 
-		});   
-	}
+		});   */
+
 
 	//Encrypt using SHA1 algorithm. You are free to salt it
 	public static byte[] encrypt(String x) throws Exception {

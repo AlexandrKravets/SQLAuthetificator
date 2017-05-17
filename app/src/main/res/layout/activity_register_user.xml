@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/regPassword"
-        android:layout_below="@+id/etName"
+        android:layout_below="@+id/regName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -48,13 +48,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/bRegister"
+        android:text="Sign up"
+        android:id="@+id/bSignup"
         android:layout_below="@+id/regConPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/regConPassword"
-        android:layout_alignEnd="@+id/regConPassword" />
+        android:layout_alignEnd="@+id/regConPassword"
+        android:onClick="onSignUpClick" />
 
 
 </RelativeLayout>
