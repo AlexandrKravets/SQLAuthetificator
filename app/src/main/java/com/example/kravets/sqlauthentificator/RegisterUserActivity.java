@@ -11,6 +11,9 @@ import android.widget.Toast;
 import java.util.concurrent.ExecutionException;
 
 public class RegisterUserActivity extends Activity {
+
+	MySQLiteHelper helper = new MySQLiteHelper(this);
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +35,17 @@ public class RegisterUserActivity extends Activity {
 				// popup message
 				Toast pass = Toast.makeText(RegisterUserActivity.this, "Passwords don't match", Toast.LENGTH_SHORT);
 				pass.show();
+			}
+
+			else
+			{
+				// insert users to database
+				User user = new User();
+				user.setEmail(username);
+				user.setPassword(password);
+
+				helper.addUser(user);
+
 			}
 		}
 	}
