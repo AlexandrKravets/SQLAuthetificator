@@ -9,7 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//import org.apache.commons.validator.routines.EmailValidator;
+
 
 public class RegisterUserActivity extends Activity {
 
@@ -35,59 +39,67 @@ public class RegisterUserActivity extends Activity {
 			if(validate(username, password, passwordConfirm)){
 
 			}
-			else
-			{
-				// insert users to database
-				User user = new User();
-				user.setEmail(username);
 
-				String encryptedPassword = "";
-				try {
-					encryptedPassword = Util.md5(password);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-
-				user.setPassword(encryptedPassword);
-				helper.addUser(user);
-				Toast msg = Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULLY", Toast.LENGTH_SHORT);
-				msg.show();
-
-				Intent i = new Intent(RegisterUserActivity.this, MainActivity.class);
-				startActivity(i);
-
+			else if(!Util.emailValidate(username)) {
+				Toast pass = Toast.makeText(RegisterUserActivity.this, "Not looks like e-mail ))", Toast.LENGTH_SHORT);
+				pass.show();
 
 			}
+			else
+			{
+				 // insert users to database
+					User user = new User();
+					user.setEmail(username);
+
+					String encryptedPassword = "";
+					try {
+						encryptedPassword = Util.md5(password);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+
+					user.setPassword(encryptedPassword);
+					helper.addUser(user);
+					Toast msg = Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULLY", Toast.LENGTH_SHORT);
+					msg.show();
+
+					Intent i = new Intent(RegisterUserActivity.this, MainActivity.class);
+					startActivity(i);
+
+				}
+			}
 		}
-	}
+
 
 	public  boolean validate (String username, String password, String passwordConfirm){
-		Boolean bool = false;
+		Boolean result = false;
 		if(!password.equals(passwordConfirm))
 		{
 			// popup message
 			Toast pass = Toast.makeText(RegisterUserActivity.this, "Passwords don't match", Toast.LENGTH_SHORT);
 			pass.show();
-			bool=true;
+			result=true;
 		}
 		else if (username.length() < 6) {
 			// popup message
 			Toast pass = Toast.makeText(RegisterUserActivity.this, "Email must be over 6 characters.", Toast.LENGTH_SHORT);
 			pass.show();
-			bool=true;
+			result=true;
 		}
 
-		else if (password.length() < 4) {
+
+
+			else if (password.length() < 4) {
 			// popup message
 			Toast pass = Toast.makeText(RegisterUserActivity.this, "Password must be over 4 characters.", Toast.LENGTH_SHORT);
 			pass.show();
-			bool=true;
+			result=true;
 		}
 
 
-		return bool;
+		return result;
 	}
 
 }
