@@ -42,14 +42,23 @@ public class RegisterUserActivity extends Activity {
 				// insert users to database
 				User user = new User();
 				user.setEmail(username);
-				user.setPassword(password);
 
+				user.setPassword(password);
 				helper.addUser(user);
+				Toast msg = Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULY", Toast.LENGTH_SHORT);
+				msg.show();
+
 
 			}
 		}
 	}
-		/*Button registerBtn = (Button)findViewById(R.id.bRegister);
+
+}
+
+
+
+
+/*/*Button registerBtn = (Button)findViewById(R.id.bRegister);
 		registerBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -57,10 +66,10 @@ public class RegisterUserActivity extends Activity {
 				// TODO Auto-generated method stub
 				EditText tUNAME = (EditText)findViewById(R.id.TFUserName);
 				EditText tUPWD 	= (EditText)findViewById(R.id.TFPassword);
-				
+
 				String username = tUNAME.getText().toString();
 				String password = tUPWD.getText().toString();
-				
+
 				String encryptedPassword = "";
 				try {
 					encryptedPassword = encrypt(password).toString();
@@ -82,21 +91,21 @@ public class RegisterUserActivity extends Activity {
 
 				if(isRegistered){
 					Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULY", Toast.LENGTH_LONG).show();
-				
+
 				}else{
 					Toast.makeText(getApplicationContext(), "YOU ARE NOT REGISTERED", Toast.LENGTH_LONG).show();
 				}
 			}
 
-		});   */
+		});
 
 
 	//Encrypt using SHA1 algorithm. You are free to salt it
 	public static byte[] encrypt(String x) throws Exception {
-	    java.security.MessageDigest d = null;
-	    d = java.security.MessageDigest.getInstance("SHA-1");
-	    d.reset();
-	    d.update(x.getBytes());
-	    return d.digest();
-	  }
-}
+		java.security.MessageDigest d = null;
+		d = java.security.MessageDigest.getInstance("SHA-1");
+		d.reset();
+		d.update(x.getBytes());
+		return d.digest();
+	}
+*/
