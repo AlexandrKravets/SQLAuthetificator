@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
      }
 
-     if (v.getId()==R.id.bRegister)
+     if (v.getId()==R.id.regBtn)
      {
          Intent i = new Intent(MainActivity.this, RegisterUserActivity.class);
          startActivity(i);

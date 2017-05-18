@@ -21,9 +21,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
 
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
+    private static final String CREATE_TABLE = "create table users (id integer primary key not null, " +
+                                            "email text not null, password text not null);";
+
+            /*"CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_EMAIL + " TEXT,"
-            + COLUMN_PASSWORD + " TEXT" + ")";
+            + COLUMN_PASSWORD + " TEXT" + ")";*/
 
     SQLiteDatabase db;
 
@@ -58,14 +61,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, user.getPassword());
 
         db.insert(TABLE_NAME, null, values);
-      //  db.execSQL("INSERT INTO users VALUES (NULL, '" + user.getEmail() + "', '" + user.getPassword() + "')");
+        db.execSQL("INSERT INTO users VALUES (NULL, '" + user.getEmail() + "', '" + user.getPassword() + "')");
         db.close(); // Closing database connection
     }
 
 
     public String searchPass(String strName) {
        db=this.getReadableDatabase();
-        String query = "SELECT email, password FROM" + TABLE_NAME;
+        String query = "SELECT email, password FROM users";
         Cursor cursor = db.rawQuery(query, null);
         String a,b;
         b="not found";

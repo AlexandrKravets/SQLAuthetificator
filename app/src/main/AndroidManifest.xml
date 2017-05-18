@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".Display"></activity>
         <activity android:name=".RegisterUserActivity"></activity>
+
     </application>
 
 </manifest>
