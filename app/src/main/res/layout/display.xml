@@ -23,4 +23,14 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_toEndOf="@+id/textView"
         android:text="@string/emptyString" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logoutBtn"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:onClick="onButtonClick" />
 </RelativeLayout>
