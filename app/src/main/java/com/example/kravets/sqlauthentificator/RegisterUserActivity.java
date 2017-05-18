@@ -1,6 +1,7 @@
 package com.example.kravets.sqlauthentificator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserManager;
 import android.view.View;
@@ -30,27 +31,63 @@ public class RegisterUserActivity extends Activity {
 			String password = pass1.getText().toString();
 			String passwordConfirm = pass2.getText().toString();
 
-			if(!password.equals(passwordConfirm))
-			{
-				// popup message
-				Toast pass = Toast.makeText(RegisterUserActivity.this, "Passwords don't match", Toast.LENGTH_SHORT);
-				pass.show();
-			}
 
+			if(validate(username, password, passwordConfirm)){
+
+			}
 			else
 			{
 				// insert users to database
 				User user = new User();
 				user.setEmail(username);
 
-				user.setPassword(password);
+				String encryptedPassword = "";
+				try {
+					encryptedPassword = Util.md5(password);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+				user.setPassword(encryptedPassword);
 				helper.addUser(user);
-				Toast msg = Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULY", Toast.LENGTH_SHORT);
+				Toast msg = Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULLY", Toast.LENGTH_SHORT);
 				msg.show();
+
+				Intent i = new Intent(RegisterUserActivity.this, MainActivity.class);
+				startActivity(i);
 
 
 			}
 		}
+	}
+
+	public  boolean validate (String username, String password, String passwordConfirm){
+		Boolean bool = false;
+		if(!password.equals(passwordConfirm))
+		{
+			// popup message
+			Toast pass = Toast.makeText(RegisterUserActivity.this, "Passwords don't match", Toast.LENGTH_SHORT);
+			pass.show();
+			bool=true;
+		}
+		else if (username.length() < 6) {
+			// popup message
+			Toast pass = Toast.makeText(RegisterUserActivity.this, "Email must be over 6 characters.", Toast.LENGTH_SHORT);
+			pass.show();
+			bool=true;
+		}
+
+		else if (password.length() < 4) {
+			// popup message
+			Toast pass = Toast.makeText(RegisterUserActivity.this, "Password must be over 4 characters.", Toast.LENGTH_SHORT);
+			pass.show();
+			bool=true;
+		}
+
+
+		return bool;
 	}
 
 }
@@ -58,54 +95,3 @@ public class RegisterUserActivity extends Activity {
 
 
 
-/*/*Button registerBtn = (Button)findViewById(R.id.bRegister);
-		registerBtn.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				EditText tUNAME = (EditText)findViewById(R.id.TFUserName);
-				EditText tUPWD 	= (EditText)findViewById(R.id.TFPassword);
-
-				String username = tUNAME.getText().toString();
-				String password = tUPWD.getText().toString();
-
-				String encryptedPassword = "";
-				try {
-					encryptedPassword = encrypt(password).toString();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				boolean isRegistered = false; */
-			/*	try {
-				//	isRegistered = new UserManager().execute(username, encryptedPassword).get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				if(isRegistered){
-					Toast.makeText(getApplicationContext(), "YOU ARE REGISTERED SUCCESSEFULY", Toast.LENGTH_LONG).show();
-
-				}else{
-					Toast.makeText(getApplicationContext(), "YOU ARE NOT REGISTERED", Toast.LENGTH_LONG).show();
-				}
-			}
-
-		});
-
-
-	//Encrypt using SHA1 algorithm. You are free to salt it
-	public static byte[] encrypt(String x) throws Exception {
-		java.security.MessageDigest d = null;
-		d = java.security.MessageDigest.getInstance("SHA-1");
-		d.reset();
-		d.update(x.getBytes());
-		return d.digest();
-	}
-*/

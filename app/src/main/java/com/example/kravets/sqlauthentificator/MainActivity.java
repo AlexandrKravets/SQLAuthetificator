@@ -1,6 +1,7 @@
 package com.example.kravets.sqlauthentificator;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,8 +28,15 @@ public class MainActivity extends AppCompatActivity {
          String strPass = pass.getText().toString();
 
          String password = helper.searchPass(strName);
+         String encryptedPassword = "";
+         try {
+             encryptedPassword = Util.md5(strPass);
+         } catch (Exception e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+         }
 
-         if (strPass.equals(password))
+         if (encryptedPassword.equals(password))
          {
              Intent i = new Intent(MainActivity.this, Display.class);
              i.putExtra("Username",strName);
